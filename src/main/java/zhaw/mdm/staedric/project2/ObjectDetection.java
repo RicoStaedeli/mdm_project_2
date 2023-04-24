@@ -16,6 +16,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -54,13 +57,15 @@ public class ObjectDetection {
         try (ZooModel<Image, DetectedObjects> model = criteria.loadModel()) {
             try (Predictor<Image, DetectedObjects> predictor = model.newPredictor()) {
                 DetectedObjects detection = predictor.predict(img);
-                saveBoundingBoxImage(img, detection,"detection");
+                saveBoundingBoxImage(img, detection, "detection");
+
+                
                 return detection;
             }
         }
     }
 
-    public String predictImage(byte[] image) throws IOException, ModelException, TranslateException {
+    public Image predictImage(byte[] image) throws IOException, ModelException, TranslateException {
         InputStream is = new ByteArrayInputStream(image);
         BufferedImage bi = ImageIO.read(is);
         Image img = ImageFactory.getInstance().fromImage(bi);
@@ -83,24 +88,25 @@ public class ObjectDetection {
         try (ZooModel<Image, DetectedObjects> model = criteria.loadModel()) {
             try (Predictor<Image, DetectedObjects> predictor = model.newPredictor()) {
                 DetectedObjects detection = predictor.predict(img);
-                saveBoundingBoxImage(img, detection,"result");
-                //img.drawBoundingBoxes(detection);
-                return "hello";
+                Image result = saveBoundingBoxImage(img, detection, "result");
+                return result;
+                // return byteArray;
+
             }
         }
     }
 
-    private static void saveBoundingBoxImage(Image img, DetectedObjects detection, String Filename)
+    private Image  saveBoundingBoxImage(Image img, DetectedObjects detection, String Filename)
             throws IOException {
         Path outputDir = Paths.get("src/main/resources/Static");
         Files.createDirectories(outputDir);
 
         img.drawBoundingBoxes(detection);
 
-        Path imagePath = outputDir.resolve(Filename + ".png");
+        Path imagePath = outputDir.resolve(Filename + ".jpg");
         // OpenJDK can't save jpg with alpha channel
         img.save(Files.newOutputStream(imagePath), "png");
         logger.info("Detected objects image has been saved in: {}", imagePath);
+        return img;
     }
-
 }

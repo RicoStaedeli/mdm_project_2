@@ -23,17 +23,34 @@ function handleFiles() {
 
     //Bild anzeigen
     imageElement.src = URL.createObjectURL(this.files[0])
+    var myHeaders = new Headers();
 
     fetch('/analyze', {
         method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-        },
+        headers: myHeaders,
         body: formData
-    }).then(data => {
-        // Display the text on the HTML page
-        const textDiv = document.getElementById("answer");
-        console.log(data)
-        resultImageElement.src = "result.png"})   
+    })
+        .then(response => response.text())
+        .then(data => {
+            // Display the text on the HTML page
+            console.log(data)
+            getGeneratedImage()
+        })
+        .catch(error => console.log('error', error));
+}
+
+function getGeneratedImage() {
+    var requestOptions = {
+        method: 'GET'
+    };
+
+    fetch("/result", requestOptions)
+        .then(response => response.blob())
+        .then(blob => {
+            const imageUrl = URL.createObjectURL(blob);
+            const imgElement = document.createElement('img');
+            imgElement.src = imageUrl;
+            document.body.appendChild(imgElement);
+        });
 }
 
