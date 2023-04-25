@@ -48,9 +48,7 @@ function getGeneratedImage() {
         .then(response => response.blob())
         .then(blob => {
             const imageUrl = URL.createObjectURL(blob);
-            const imgElement = document.createElement('img');
-            imgElement.src = imageUrl;
-            document.body.appendChild(imgElement);
+            resultImageElement.src = imageUrl;
         });
 }
 
