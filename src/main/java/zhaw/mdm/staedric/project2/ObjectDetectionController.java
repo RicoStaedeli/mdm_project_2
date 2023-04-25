@@ -37,13 +37,13 @@ public class ObjectDetectionController {
         return "Running";
     }
 
-    @RequestMapping(value = "/result", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
+    @RequestMapping(value = "/result", method = RequestMethod.GET, produces = MediaType.IMAGE_PNG_VALUE)
     public ResponseEntity<InputStreamResource> getImage() throws IOException {
-        var imgFile = new ClassPathResource("static/result.jpg");
+        var imgFile = new ClassPathResource("static/result.png");
 
         return ResponseEntity
                 .ok()
-                .contentType(MediaType.IMAGE_JPEG)
+                .contentType(MediaType.IMAGE_PNG)
                 .body(new InputStreamResource(imgFile.getInputStream()));
     }
 

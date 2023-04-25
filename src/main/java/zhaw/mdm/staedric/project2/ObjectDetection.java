@@ -103,7 +103,7 @@ public class ObjectDetection {
 
         img.drawBoundingBoxes(detection);
 
-        Path imagePath = outputDir.resolve(Filename + ".jpg");
+        Path imagePath = outputDir.resolve(Filename + ".png");
         // OpenJDK can't save jpg with alpha channel
         img.save(Files.newOutputStream(imagePath), "png");
         logger.info("Detected objects image has been saved in: {}", imagePath);
