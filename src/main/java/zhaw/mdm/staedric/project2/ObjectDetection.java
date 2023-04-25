@@ -98,15 +98,15 @@ public class ObjectDetection {
 
     private Image  saveBoundingBoxImage(Image img, DetectedObjects detection, String Filename)
             throws IOException {
-        Path outputDir = Paths.get("src/main/resources/Static");
-        Files.createDirectories(outputDir);
+        //Path outputDir = Paths.get("src/main/resources/Static");
+        //Files.createDirectories(outputDir);
 
         img.drawBoundingBoxes(detection);
 
-        Path imagePath = outputDir.resolve(Filename + ".png");
+        //Path imagePath = outputDir.resolve(Filename + ".png");
         // OpenJDK can't save jpg with alpha channel
-        img.save(Files.newOutputStream(imagePath), "png");
-        logger.info("Detected objects image has been saved in: {}", imagePath);
+        //img.save(Files.newOutputStream(imagePath), "png");
+        //logger.info("Detected objects image has been saved in: {}", imagePath);
         return img;
     }
 }
