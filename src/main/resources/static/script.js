@@ -34,7 +34,6 @@ function handleFiles() {
         .then(data => {
             // Display the text on the HTML page
             console.log(data)
-            getGeneratedImage()
         })
         .catch(error => console.log('error', error));
 }
@@ -48,6 +47,7 @@ function getGeneratedImage() {
         .then(response => response.blob())
         .then(blob => {
             const imageUrl = URL.createObjectURL(blob);
+            console.log(imageUrl)
             resultImageElement.src = imageUrl;
         });
 }
