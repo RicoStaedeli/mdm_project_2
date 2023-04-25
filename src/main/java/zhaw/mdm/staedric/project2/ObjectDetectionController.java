@@ -48,13 +48,19 @@ public class ObjectDetectionController {
     }
 
     @PostMapping(path = "/predict")
-    public byte[] predictImage(@RequestParam("image") MultipartFile image) throws Exception {
-
-        ai.djl.modality.cv.Image result = detection.predictImage(image.getBytes());
-        BufferedImage bufferedImage = (BufferedImage) result;
+    public ResponseEntity<byte[]> predictImage(@RequestParam("image") MultipartFile image) throws Exception {
+        Image result = detection.predictImage(image.getBytes());
+      
+        // convert the image to a byte array
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        ImageIO.write(bufferedImage, "png", outputStream);
-        return outputStream.toByteArray();
+        result.save(outputStream, "png");
+        byte[] imageBytes = outputStream.toByteArray();
+        
+        // create a response entity with the image bytes and content type
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.IMAGE_PNG);
+        headers.setContentLength(imageBytes.length);
+        return new ResponseEntity<>(imageBytes, headers, HttpStatus.OK);
     }
 
     @PostMapping(path = "/analyze")
