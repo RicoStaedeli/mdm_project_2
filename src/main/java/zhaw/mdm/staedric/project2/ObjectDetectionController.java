@@ -49,6 +49,9 @@ public class ObjectDetectionController {
 
     @PostMapping(path = "/predict")
     public ResponseEntity<byte[]> predictImage(@RequestParam("image") MultipartFile image) throws Exception {
+        if(image == null){
+           return  new ResponseEntity<>("Failed".getBytes(), null, HttpStatus.OK);
+        }
         Image result = detection.predictImage(image.getBytes());
       
         // convert the image to a byte array
