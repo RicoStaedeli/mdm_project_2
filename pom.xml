@@ -25,23 +25,63 @@
 
 		<dependency>
 			<groupId>ai.djl.pytorch</groupId>
+			<artifactId>pytorch-engine</artifactId>
+			<version>0.22.1</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>ai.djl.pytorch</groupId>
 			<artifactId>pytorch-model-zoo</artifactId>
-			<version>0.19.0</version>
+			<version>0.22.1</version>
+		</dependency>
+		<dependency>
+			<groupId>ai.djl.pytorch</groupId>
+			<artifactId>pytorch-native-cpu</artifactId>
+			<classifier>linux-x86_64</classifier>
+			<scope>runtime</scope>
+			<version>2.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>ai.djl.pytorch</groupId>
+			<artifactId>pytorch-jni</artifactId>
+			<version>2.0.0-0.22.1</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>ai.djl.pytorch</groupId>
+			<artifactId>pytorch-native-cpu-precxx11</artifactId>
+			<classifier>linux-aarch64</classifier>
+			<scope>runtime</scope>
+			<version>2.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>ai.djl.pytorch</groupId>
+			<artifactId>pytorch-native-cu118</artifactId>
+			<classifier>linux-x86_64</classifier>
+			<version>2.0.0</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>ai.djl.pytorch</groupId>
+			<artifactId>pytorch-native-cu118-precxx11</artifactId>
+			<classifier>linux-x86_64</classifier>
+			<version>2.0.0</version>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>ai.djl</groupId>
 			<artifactId>model-zoo</artifactId>
-			<version>0.19.0</version>
+			<version>0.22.1</version>
 		</dependency>
 		<dependency>
 			<groupId>ai.djl</groupId>
 			<artifactId>basicdataset</artifactId>
-			<version>0.19.0</version>
+			<version>0.22.1</version>
 		</dependency>
 		<dependency>
 			<groupId>ai.djl</groupId>
 			<artifactId>api</artifactId>
-			<version>0.19.0</version>
+			<version>0.22.1</version>
 		</dependency>
 
 		<dependency>

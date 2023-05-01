@@ -58,7 +58,6 @@ public class ObjectDetection {
             try (Predictor<Image, DetectedObjects> predictor = model.newPredictor()) {
                 DetectedObjects detection = predictor.predict(img);
                 saveBoundingBoxImage(img, detection, "detection");
-
                 
                 return detection;
             }
@@ -66,10 +65,12 @@ public class ObjectDetection {
     }
 
     public Image predictImage(byte[] image) throws IOException, ModelException, TranslateException {
+        logger.info("Start Prediction");
         InputStream is = new ByteArrayInputStream(image);
         BufferedImage bi = ImageIO.read(is);
-        Image img = ImageFactory.getInstance().fromImage(bi);
 
+        Image img = ImageFactory.getInstance().fromImage(bi);
+        logger.info("Build Image Factory");
         String backbone;
         if ("TensorFlow".equals(Engine.getDefaultEngineName())) {
             backbone = "mobilenet_v2";
@@ -85,10 +86,15 @@ public class ObjectDetection {
                 .optProgress(new ProgressBar())
                 .build();
 
+        logger.info("Builded criteria");
+        //return img;
+
         try (ZooModel<Image, DetectedObjects> model = criteria.loadModel()) {
             try (Predictor<Image, DetectedObjects> predictor = model.newPredictor()) {
+                logger.info("Predict with predictor");
                 DetectedObjects detection = predictor.predict(img);
                 Image result = saveBoundingBoxImage(img, detection, "result");
+                logger.info("draw objects");
                 return result;
                 // return byteArray;
 
