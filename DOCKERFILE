@@ -1,9 +1,18 @@
-   FROM eclipse-temurin:17-jdk-alpine
-   EXPOSE 8080
-   ARG JAR_FILE=target/*.jar
-   COPY ${JAR_FILE} project2-0.0.1-SNAPSHOT.jar
-     
-   RUN apk add --no-cache msttcorefonts-installer fontconfig
-   RUN update-ms-fonts
- 
-   ENTRYPOINT ["java","-jar","/project2-0.0.1-SNAPSHOT.jar"]
+
+# Use the official Ubuntu 20.04 image as the base image
+FROM ubuntu:20.04
+
+# Install OpenJDK 11 and other necessary packages
+RUN apt-get update && apt-get install -y openjdk-17-jdk openjdk-17-jre curl
+
+# Set the working directory to /app
+WORKDIR /app
+
+# Copy the Spring Boot application JAR file into the container
+COPY target/project2-0.0.1-SNAPSHOT.jar .
+
+# Expose port 8080 to the outside world
+EXPOSE 8080
+
+# Start the Spring Boot application when the container starts
+CMD ["java", "-jar", "project2-0.0.1-SNAPSHOT.jar"]
