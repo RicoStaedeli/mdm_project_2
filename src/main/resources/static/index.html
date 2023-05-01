@@ -1,60 +1,59 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
 
 <head>
-    <title>Projekt 2 Rico</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rico MDM Projekt 2</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <script src="script.js" async></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <nav class="navbar bg-body-tertiary bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Object Detection DJL</a>
+        </div>
+    </nav>
     <div class="container-fluid">
-        <h1>Model Deployment Project 2</h1>
-        <div class="card mb-2">
+        <div class="card mt-2 mb-2 w-75" style="max-width: 1000px;">
+            <h5 class="card-img-top bg-info-subtle p-3">Beschreibung</h5>
             <div class="card-body">
-                <p>In diesem Projekt wird das Machine Learning Model Git von Microsoft verwendet.</p>
-                <p>Das Model kann über diesen <a href="https://huggingface.co/docs/transformers/model_doc/git">Link</a>
+                <p>In diesem Projekt wird das Machine Learning Model object Detection aus de Deep Java Library verwendet.</p>
+                <p>Das Model kann über diesen <a href="https://djl.ai/examples/docs/object_detection.html">Link</a>
                     aufgerufen werden</p>
             </div>
         </div>
 
-        <div class="card mb-2">
+        <div class="card mb-2 w-75" style="max-width: 1000px;">
+            <h5 class="card-img-top bg-info-subtle p-3">Upload</h5>
             <div class="card-body">
                 <p>Um ein Bild zu klassifizieren, kann ein beliebieges Bild dem Model übergeben werden</p>
                 <div class="form-group">
                     <form id="upload">
-                        <label for="file">Bild zum klassifizieren</label>
-                        <input type="file" id="image-input" accept="image/*">
-                        <image id="uploaded_image" width="500" height="auto"></image>
+                        <div class="mb-3">
+                            <label for="formFileSm" class="form-label">Bild zum klassifizieren hochladen</label>
+                            <input class="form-control form-control-sm" id="image-input" type="file" accept="image/*">
+                        </div>
+                        <image id="uploaded_image" width="auto" height="300"></image>
                     </form>
                 </div>
             </div>
         </div>
 
-        <div class="card">
-            <div class="card-body">
-                <div id="answerPart">
-                    <p>
-                        <b>Answer: </b>
-                        <!-- <button type="button" onclick="getGeneratedImage()">Get Predicte Image</button> -->
-                        <div id="answer"></div>
-                        <image id="result_image" width="90%" height="auto" ></image>
-                    </p>
-                </div>
+        <div class="card w-75" style="max-width: 1000px;">
+            <h5 class="card-img-top bg-info-subtle p-3">Antwort</h5>
+            <div class="card-body"> 
+                <div id="loader" class="loader hidden"></div> 
+                <image id="result_image" width="70%" height="auto" ></image>             
             </div>
         </div>
-
     </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
         crossorigin="anonymous"></script>
 </body>
 
