@@ -1,18 +1,11 @@
-
-# Use the official Ubuntu 20.04 image as the base image
-FROM ubuntu:20.04
-
-# Install OpenJDK 11 and other necessary packages
-RUN apt-get update && apt-get install -y openjdk-17-jdk openjdk-17-jre curl
-
-# Set the working directory to /app
+FROM eclipse-temurin:17-jdk-focal
+ 
 WORKDIR /app
-
-# Copy the Spring Boot application JAR file into the container
-COPY target/project2-0.0.1-SNAPSHOT.jar .
-
-# Expose port 8080 to the outside world
-EXPOSE 8080
-
-# Start the Spring Boot application when the container starts
-CMD ["java", "-jar", "project2-0.0.1-SNAPSHOT.jar"]
+ 
+COPY .mvn/ .mvn
+COPY mvnw pom.xml ./
+RUN ./mvnw dependency:go-offline
+ 
+COPY src ./src
+ 
+CMD ["./mvnw", "spring-boot:run"]
