@@ -1,4 +1,4 @@
-# MDM Project 2 -- Object Detection with JDL
+# MDM Project 2 -- Object Detection with DJL
 In diesem Projekt wurde mittels eines Models von JDL eine Spring Boot Applikation entwickelt, welche in der Lage ist Objekte in einem Bild zu erkenne. 
 
 ## Docker Image Builden und auf Dockerhub pushen
